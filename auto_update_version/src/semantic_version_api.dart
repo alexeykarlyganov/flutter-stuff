@@ -1,38 +1,26 @@
-class InvalidVersionFormatException implements Exception {
-  String _message;
+import 'errors.dart';
 
-  InvalidVersionFormatException(
-      [String message =
-          'Invalid version format!\nValid format: x.y.z[-+][0-9a-z.-]. Example: 1.2.4+build.2.b8f12d7']) {
-    _message = message;
-  }
+enum SemanticVersionType { major, minor, patch }
 
-  @override
-  String toString() {
-    return _message;
-  }
-}
-
-/// A class that presen the semantic versioning API (x.y.z)
+/// A class that present the semantic versioning API (x.y.z)
 class SemanticVersionApi {
   String _majorVersion;
   String _minorVersion;
   String _patchVersion;
 
-  String _buildVersion = null;
+  String _buildVersion;
 
-  static RegExp versionPattern = RegExp(
-    r'^(\d+)\.{1}(\d+)\.{1}(\d+)([+-]{1}[0-9A-Za-z-\.]+)$',
-    caseSensitive: false,
-  );
+  static String versionPattern =
+      r'(\d+)\.{1}(\d+)\.{1}(\d+)([+-]{1}[0-9A-Za-z-\.]+)';
 
   final String version;
 
   SemanticVersionApi({this.version}) {
-    if (!versionPattern.hasMatch(version)) {
+    RegExp re = RegExp(versionPattern, caseSensitive: false);
+    if (!re.hasMatch(version)) {
       throw InvalidVersionFormatException();
     }
-    Iterable<RegExpMatch> matches = versionPattern.allMatches(version);
+    Iterable<RegExpMatch> matches = re.allMatches(version);
 
     _majorVersion = matches.first.group(1);
     _minorVersion = matches.first.group(2);
@@ -40,29 +28,48 @@ class SemanticVersionApi {
     _buildVersion = matches.first.group(4);
   }
 
-  // ignore: todo
-  // TODO: Implement a method for update and reset build version
-  void updateBuildVersion() {}
-  void resetBuildVersion() {}
+  void _updateBuildVersion() {
+    String version = "$majorVersion.$minorVersion.$patchVersion";
+    String hash = version.hashCode.toString();
 
-  void updateMajorVersion() {
-    _patchVersion = _minorVersion = '0';
-    // resetBuildVersion();
-    int newVersion = int.parse(_majorVersion);
-    _majorVersion = (++newVersion).toString();
+    _buildVersion = "build.$hash";
   }
 
-  void updateMinorVersion() {
-    _patchVersion = '0';
-    // resetBuildVersion();
-    int newVersion = int.parse(_minorVersion);
-    _minorVersion = (++newVersion).toString();
+  void updateVersion({SemanticVersionType type}) {
+    switch (type) {
+      case SemanticVersionType.major:
+        _patchVersion = _minorVersion = '0';
+        _majorVersion = (int.parse(_majorVersion) + 1).toString();
+        _updateBuildVersion();
+        break;
+      case SemanticVersionType.minor:
+        _patchVersion = '0';
+        _minorVersion = (int.parse(_minorVersion) + 1).toString();
+        _updateBuildVersion();
+        break;
+      case SemanticVersionType.patch:
+        _patchVersion = (int.parse(_patchVersion) + 1).toString();
+        _updateBuildVersion();
+        break;
+      default:
+        print('Unknown type of semantic version.'
+            'Available types: major, minor, patch.');
+        break;
+    }
   }
 
-  void updatePatchVersion() {
-    // resetBuildVersion();
-    int newVersion = int.parse(_patchVersion);
-    _patchVersion = (++newVersion).toString();
+  static SemanticVersionType whatType(String type) {
+    // FIXME: change this? maybe...
+    switch (type) {
+      case 'major':
+        return SemanticVersionType.major;
+      case 'minor':
+        return SemanticVersionType.minor;
+      case 'patch':
+        return SemanticVersionType.patch;
+      default:
+        return null;
+    }
   }
 
   String get majorVersion => _majorVersion;
@@ -73,6 +80,6 @@ class SemanticVersionApi {
 
   @override
   String toString() {
-    return '$majorVersion.$minorVersion.$patchVersion$buildVersion';
+    return '$majorVersion.$minorVersion.$patchVersion+$buildVersion';
   }
 }
