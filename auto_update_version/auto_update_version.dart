@@ -6,17 +6,16 @@ import 'src/semantic_version_api.dart';
 import 'src/errors.dart';
 
 void main(List<String> args) async {
-  if (args.length < 2) throw InvalidArgumentsException();
+  if (args.length < 2) return;
 
   String pubspecPath = args[0];
-  File pubspecFile = File(pubspecPath);
-  if (!pubspecFile.existsSync()) throw InvalidArgumentsException();
+  if (!File(pubspecPath).existsSync()) return;
 
   SemanticVersionType type = SemanticVersionApi.whatType(args[1]);
 
-  if (type == null) throw InvalidArgumentsException();
+  if (type == null) return;
 
-  String pubspecStr = await pubspecFile.readAsString();
+  String pubspecStr = await File(pubspecPath).readAsString();
   YamlMap doc = loadYaml(pubspecStr);
 
   try {
