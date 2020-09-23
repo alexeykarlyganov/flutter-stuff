@@ -7,7 +7,7 @@ This repository contains some stuff for Flutter development.
 Auto update pubspec version using dart
 
 ```console
-    dart auto_update_version.dart <path to pubspec.yaml>
+    dart auto_update_version.dart <path to pubspec.yaml> <major|minor|patch>
 ```
 
 ## Docker
