@@ -12,6 +12,10 @@ Auto update pubspec version using dart
 
 ## Docker
 
+
+[![](https://images.microbadger.com/badges/version/alexeykarlyganov/flutter-sdk:core.svg)](https://microbadger.com/images/alexeykarlyganov/flutter-sdk:core)
+[![](https://images.microbadger.com/badges/image/alexeykarlyganov/flutter-sdk:core.svg)](https://microbadger.com/images/alexeykarlyganov/flutter-sdk:core)
+
 .docker folder contains a Dockerfile for Flutter CI/CD and .dockerignore file
 
 ### Linux
