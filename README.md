@@ -13,16 +13,16 @@ dart auto_update_version.dart <path to pubspec.yaml> <major|minor|patch>
 ## Docker
 
 
-[![](https://images.microbadger.com/badges/version/alexeykarlyganov/flutter-sdk:core.svg)](https://microbadger.com/images/alexeykarlyganov/flutter-sdk:core)
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/alexeykarlyganov/flutter-sdk/latest)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/alexeykarlyganov/flutter-sdk/latest)
 
 .docker folder contains a Dockerfile for Flutter CI/CD and .dockerignore file
 
 ### Linux
 ```
-sudo docker build -t myimage:core -f .docker/Dockerfile --target core \
+sudo DOCKER_BUILDKIT=1 docker build . -t flutter-sdk:latest -f .docker/Dockerfile --compress --target core \
     --build-arg ANDROID_BUILD_TOOLS_VERSION=30.0.1 \
-    --build-arg ANDROID_PLATFORM_VERSION=30 .
+    --build-arg ANDROID_PLATFORM_VERSION=30
 ```
 
 ## Shell script setup
