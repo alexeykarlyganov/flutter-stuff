@@ -14,7 +14,7 @@ dart auto_update_version.dart <path to pubspec.yaml> <major|minor|patch>
 
 
 [![](https://images.microbadger.com/badges/version/alexeykarlyganov/flutter-sdk:core.svg)](https://microbadger.com/images/alexeykarlyganov/flutter-sdk:core)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/alexeykarlyganov/flutter-sdk/core)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/alexeykarlyganov/flutter-sdk/latest)
 
 .docker folder contains a Dockerfile for Flutter CI/CD and .dockerignore file
 
