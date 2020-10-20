@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/zsh
 
 info() {
 	printf -- '\033[1;32m%s \033[0m\n' "$@"
