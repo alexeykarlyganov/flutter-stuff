@@ -1,4 +1,6 @@
-#!/usr/bin/zsh
+#!/bin/sh
+
+set -e
 
 # useful functions
 info() {
@@ -62,14 +64,13 @@ info "Clean..."
 
 sudo rm "${ANDROID_SDK_ARCHIVE}"
 
-info "Installing Android SDK completed. \nInstalling Flutter..."
+info "Installing Android SDK completed!"
+info 'Installing Flutter...'
 
-echo "export FLUTTER_DIR="/opt/flutter"" >> ~/.zshrc
-echo "export PATH="$PATH:${FLUTTER_DIR}/bin"" >> ~/.zshrc
-echo "export PATH="${ANDROID_SDK_ROOT}/tools:${PATH}"" >> ~/.zshrc
-echo "export PATH="${ANDROID_SDK_ROOT}/tools/bin:${PATH}"" >> ~/.zshrc
-
-source ~/.zshrc
+export FLUTTER_DIR="/opt/flutter"
+export PATH="$PATH:${FLUTTER_DIR}/bin"
+export PATH="${ANDROID_SDK_ROOT}/tools:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/tools/bin:${PATH}"
 
 sudo git clone https://github.com/flutter/flutter.git -b stable --depth 1 ${FLUTTER_DIR}
 
@@ -84,3 +85,9 @@ yes | flutter doctor --android-licenses
 flutter config --no-analytics
 
 info 'Flutter and Android SDK succefully installed! Time to create cool things :)'
+info 'Do not remember to add exports to your rc file .zshrc, .bashrc and etc'
+info '	export FLUTTER_DIR="/opt/flutter"'
+info '	export PATH="$PATH:${FLUTTER_DIR}/bin"'
+info '	export ANDROID_SDK_ROOT="/opt/android-sdk"'
+info '	export PATH="${ANDROID_SDK_ROOT}/tools:${PATH}"'
+info '	export PATH="${ANDROID_SDK_ROOT}/tools/bin:${PATH}"'

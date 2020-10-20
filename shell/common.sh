@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/sh
 
 info() {
 	printf -- '\033[1;32m%s \033[0m\n' "$@"
