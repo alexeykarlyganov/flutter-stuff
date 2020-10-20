@@ -1,11 +1,14 @@
 import 'package:issue_tracker/issue_tracker.dart';
-import 'package:issue_tracker/src/api/github.dart';
 
 Future<void> main(List<String> args) async {
   var github = GitHubIssueAPI(
     owner: 'alexeykarlyganov',
     project: 'flutter-stuff',
+    token: String.fromEnvironment('GITHUB_TOKEN'),
   );
 
-  await github.createIssue(title: 'Test issue', body: 'Empty description');
+  await github.createIssue(
+    title: 'Test issue',
+    body: 'Empty description',
+  );
 }

@@ -5,16 +5,20 @@ import '../models/github_issue_model.dart';
 class GitHubIssueAPI {
   final String project;
   final String owner;
+  final String token;
 
-  static String githubUrl = 'https://api.github.com';
+  static const String BASE_URL = 'https://api.github.com';
 
   String _url;
 
-  GitHubIssueAPI({this.project, this.owner}) {
-    _url = '$githubUrl/repos/$owner/$project/issues';
+  GitHubIssueAPI({
+    this.project,
+    this.owner,
+    this.token,
+  }) {
+    _url = '$BASE_URL/repos/$owner/$project/issues';
   }
 
-  /// Creating an issue
   Future<void> createIssue({
     String title,
     String body,
@@ -22,11 +26,17 @@ class GitHubIssueAPI {
     List<String> labels,
     List<String> assignees,
   }) async {
-    var model = GithubIssueModel(title: title, body: body);
+    var model = GithubIssueModel(
+      title: title,
+      body: body,
+      milestone: milestone,
+    );
+
+    print(model.request_body());
 
     var response = await http.post(
       _url,
-      headers: model.headers,
+      headers: headers,
       body: model.request_body(),
     );
 
@@ -38,5 +48,8 @@ class GitHubIssueAPI {
     }
   }
 
-  String get url => _url;
+  Map<String, String> get headers => <String, String>{
+        'Accept': ' application/vnd.github.v3+json',
+        'Authorization': 'token $token',
+      };
 }
