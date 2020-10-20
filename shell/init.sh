@@ -1,8 +1,5 @@
 #!/usr/bin/zsh
 
-# Exit on errors
-set -euo pipefail
-
 # useful functions
 info() {
 	printf -- '\033[1;32m%s \033[0m\n' "$@"
