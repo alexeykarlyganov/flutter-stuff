@@ -59,7 +59,7 @@ sudo unzip -d "${ANDROID_SDK_ROOT}" "${ANDROID_SDK_ARCHIVE}"
 
 info "Install Android SDK..."
 
-sudo yes | sudo "${ANDROID_SDK_ROOT}/tools/bin/sdkmanager" "tools" "build-tools;30.0.1" "platforms;android-30" "platform-tools" 2> /dev/null
+sudo yes | sudo "${ANDROID_SDK_ROOT}/tools/bin/sdkmanager" "tools" "build-tools;30.0.1" "platforms;android-30" "platform-tools"
 
 info "Clean..."
 
