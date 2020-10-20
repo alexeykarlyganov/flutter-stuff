@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/sh
 
 # Exit on errors
 set -euo pipefail
@@ -40,7 +40,7 @@ else
 info "Skiping install optional dependecies..."
 fi
 
-info "Silence warnings when accepting android licenses"
+info "Silence warnings when accepting android licenses..."
 
 mkdir -p ~/.android
 touch ~/.android/repositories.cfg
@@ -59,7 +59,7 @@ sudo unzip -d "${ANDROID_SDK_ROOT}" "${ANDROID_SDK_ARCHIVE}"
 
 info "Install Android SDK..."
 
-sudo yes | sudo "${ANDROID_SDK_ROOT}/tools/bin/sdkmanager" "tools" "build-tools;30.0.1" "platforms;android-30" "platform-tools"
+sudo yes | sudo "${ANDROID_SDK_ROOT}/tools/bin/sdkmanager" "tools" "build-tools;29.0.3" "platforms;android-29" "platform-tools" "patcher;v4"
 
 info "Clean..."
 
