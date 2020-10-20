@@ -11,10 +11,10 @@ class GithubIssueModel {
 
   GithubIssueModel({
     @required this.title,
-    this.body,
+    this.body = '',
     this.milestone,
-    this.labels,
-    this.assignees,
+    this.labels = const [],
+    this.assignees = const [],
   }) : assert(title != null);
 
   String request_body() {
@@ -22,10 +22,9 @@ class GithubIssueModel {
 
     parameters['body'] = body.isEmpty ? '' : body;
     parameters['milestone'] ??= milestone;
+    parameters['labels'] = labels.isEmpty ? [] : labels;
+    parameters['assignees'] = assignees.isEmpty ? [] : assignees;
 
     return jsonEncode(<String, dynamic>{'title': title, ...parameters});
   }
-
-  Map<String, String> get headers =>
-      <String, String>{'Accept': ' application/vnd.github.v3+json'};
 }
