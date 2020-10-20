@@ -1,4 +1,4 @@
 library issue_tracker;
 
-import 'src/api/github.dart';
-import 'src/api/gitlab.dart';
+export 'src/api/github.dart';
+export 'src/api/gitlab.dart';
