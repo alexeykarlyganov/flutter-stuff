@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
-import 'src/semantic_version_api.dart';
-import 'src/errors.dart';
+import 'package:auto_update_pubver/auto_update_pubver.dart';
 
 void main(List<String> args) async {
   if (args.length < 2) return;
