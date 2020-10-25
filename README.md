@@ -27,7 +27,7 @@ sudo DOCKER_BUILDKIT=1 docker build . -t flutter-sdk:latest -f .docker/Dockerfil
 
 ## Shell script setup
 
-Works only on Debian-like distributions
+Works only on Ubuntu
 
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/alexeykarlyganov/flutter-stuff/master/shell/init.sh)"
