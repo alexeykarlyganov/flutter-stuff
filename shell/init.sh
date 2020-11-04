@@ -27,7 +27,7 @@ prompt() {
 
 info "Installing required dependecies..."
 
-sudo apt install -q zsh git wget curl zip unzip xz-utils openjdk-8-jdk openjdk-8-jre libglu1-mesa
+sudo apt install -q git wget curl zip unzip xz-utils openjdk-8-jdk openjdk-8-jre libglu1-mesa
 
 if prompt 'Install packages for fastlane? (optional)'; then
 
