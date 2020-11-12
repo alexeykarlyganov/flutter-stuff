@@ -20,7 +20,7 @@ dart auto_update_version.dart <path to pubspec.yaml> <major|minor|patch>
 
 ### Linux
 ```
-sudo DOCKER_BUILDKIT=1 docker build . -t flutter-sdk:latest -f .docker/Dockerfile --compress --target core \
+sudo DOCKER_BUILDKIT=1 docker build . -t flutter-sdk:latest -f docker/Dockerfile --compress --target core \
     --build-arg ANDROID_BUILD_TOOLS_VERSION=30.0.1 \
     --build-arg ANDROID_PLATFORM_VERSION=30
 ```
