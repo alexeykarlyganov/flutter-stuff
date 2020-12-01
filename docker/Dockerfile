@@ -46,6 +46,8 @@ ENV PATH="$PATH:${FLUTTER_DIR}/bin"
 
 RUN apt-get update -q && apt-get install -yq --no-install-recommends xz-utils unzip curl zip git && \
     apt-get autoremove -yq && \
+    apt-get autoclean -yq && \
+    apt-get clean -q && \
     rm -rf /var/lib/apt/lists/*
 
 # Setup user & group
@@ -67,44 +69,3 @@ RUN git config --global user.email "email@example.com" && \
     git config --global user.name "Your Name"
 
 RUN flutter doctor -v
-
-# TODO: implement fastlane container
-# ============================================= FASTLANE CONTAINER =============================================
-# FROM openjdk:8-slim as fastlane
-
-# ENV DEBIAN_FRONTEND="noninteractive"
-
-# RUN apt-get update -q && apt-get install -yqq --no-install-recommends \
-#     ruby-full \
-#     build-essential \
-#     libstdc++6 \
-#     lib32stdc++6 && \
-#     apt-get autoremove -yq && \
-#     rm -rf /var/lib/apt/lists/*
-
-# ENV LANG="en_US.UTF-8"
-
-# RUN gem install bundler -q && \
-#     gem install fastlane -Nq
-
-# ENV ANDROID_SDK_ROOT="/opt/android-sdk"
-# COPY --from=android /opt/android-sdk ${ANDROID_SDK_ROOT}
-
-# # Setup user & group
-# RUN groupadd --gid 6969 xyzgroup && \
-#     useradd --uid 1337 --gid 6969 --shell /bin/bash --create-home appuser && \
-# # Change owner of flutter and android-sdk folder
-#     chown -R appuser:xyzgroup ${FLUTTER_DIR} && \
-#     chown -R appuser:xyzgroup ${ANDROID_SDK_ROOT}
-
-# # Change user
-# USER appuser
-
-# # Configure Flutter
-# RUN yes | flutter doctor --android-licenses 1> /dev/null
-# RUN flutter config --no-analytics && \
-#     flutter doctor -v
-
-# # Setup git
-# RUN git config --global user.email "email@example.com" && \
-#     git config --global user.name "Your Name"

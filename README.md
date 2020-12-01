@@ -16,7 +16,7 @@ dart auto_update_version.dart <path to pubspec.yaml> <major|minor|patch>
 ![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/alexeykarlyganov/flutter-sdk/latest)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/alexeykarlyganov/flutter-sdk/latest)
 
-.docker folder contains a Dockerfile for Flutter CI/CD and .dockerignore file
+docker folder contains a Dockerfile for Flutter CI/CD and .dockerignore file
 
 ### Linux
 ```
